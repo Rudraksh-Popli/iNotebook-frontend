@@ -47,8 +47,6 @@ const NoteState = (props) => {
                 "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNmEzYTVmMWMwYWUzYWQ1MTEwZDk4YzQ4In0sImlhdCI6MTc4MjIxMTMzMH0.yETzQOIbfvOMiFgR9rhtLZDcy_SIMCfrlkKpfgWaPb4"
             }
         });
-        const json = await response.json();
-        console.log(json);
         const newNotes = notes.filter((note) => {
             return note._id !== id;
         });
@@ -64,15 +62,17 @@ const NoteState = (props) => {
             },
             body: JSON.stringify({ title, description, tag })
         });
-        const json = await response.json();
-        for (let index = 0; index < json.length; index++) {
-            const element = json[index];
+        let newNotes = JSON.parse(JSON.stringify(notes));
+        for (let index = 0; index < notes.length; index++) {
+            const element = newNotes[index];
             if (element._id === id) {
-                element.title = title;
-                element.description = description;
-                element.tag = tag;
+                newNotes[index].title = title;
+                newNotes[index].description = description;
+                newNotes[index].tag = tag;
+                break;
             }
         }
+        setNotes(newNotes);
     };
     return (
         <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes }}>
