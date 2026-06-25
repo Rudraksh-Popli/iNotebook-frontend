@@ -20,6 +20,10 @@ const NavBar = () => {
                             <Link to="/about" end="true" className={`nav-link${location.pathname === "/about" ? " active" : ""}`}>About Us</Link>
                         </li>
                     </ul>
+                    <div className="d-flex">
+                        <Link to="/login" end="true" className="btn btn-primary mx-1" role="button">Login</Link>
+                        <Link to="/signup" end="true" className="btn btn-primary mx-1" role="button">Signup</Link>
+                    </div>
                 </div>
             </div>
         </nav>

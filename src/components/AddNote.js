@@ -16,7 +16,7 @@ const AddNote = () => {
     return (
         <div className="container my-3">
             <h3>Add a Note</h3>
-            <form className="my-3">
+            <form action="" method='post' className="my-3">
                 <div className="mb-3">
                     <label htmlFor="title" className="form-label">Title</label>
                     <input type="text" className="form-control" id="title" name="title" aria-describedby="emailHelp" onChange={onChange} value={note.title} minLength={5} required />

@@ -37,7 +37,7 @@ const Notes = () => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <form className="my-3" action="" method="put">
+                            <form action="" method="put" className="my-3">
                                 <div className="mb-3">
                                     <label htmlFor="etitle" className="form-label">Title</label>
                                     <input type="text" className="form-control" id="etitle" name="etitle" aria-describedby="emailHelp" value={note.etitle} onChange={onChange} minLength={5} required />
