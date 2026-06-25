@@ -27,19 +27,12 @@ const NoteState = (props) => {
             },
             body: JSON.stringify({ title, description, tag })
         });
-        const note = {
-            "_id": "6a3bcd0e6b06096e35b4a876",
-            "user": "6a3a5f1c0ae3ad5110d98c48",
-            "title": title,
-            "description": description,
-            "tag": tag,
-            "date": "2026-06-25T12:23:43.383Z",
-            "__v": 0
-        };
+        const note = await response.json();
         setNotes(notes.concat(note));
     };
     // Delete a Note
     const deleteNote = async (id) => {
+        // eslint-disable-next-line
         const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
             method: "DELETE",
             headers: {
@@ -54,6 +47,7 @@ const NoteState = (props) => {
     };
     // Edit a Note
     const editNote = async (id, title, description, tag) => {
+        // eslint-disable-next-line
         const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
             method: "PUT",
             headers: {
