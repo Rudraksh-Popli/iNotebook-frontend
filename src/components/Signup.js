@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 
-const Signup = () => {
+const Signup = (props) => {
     let navigate = useNavigate();
     const [credentials, setCredentials] = useState({ name: "", email: "", password: "", cpassword: "" });
     const onChange = (e) => {
@@ -20,13 +20,14 @@ const Signup = () => {
         if (json.success) {
             localStorage.setItem('token', json.authToken);
             navigate("/");
+            props.showAlert("Account Created Successfully", "success");
         }
         else {
-            alert(json.error);
+            props.showAlert("A user with this email already exists", "danger");
         }
     };
     return (
-        <div className='container my-3'>
+        <div className='container my-4'>
             <form action="" method='post' onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="name" className="form-label">Name</label>
@@ -34,7 +35,7 @@ const Signup = () => {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email address</label>
-                    <input type="email" className="form-control" id="email" name="email" value={credentials.email} onChange={onChange} aria-describedby="emailHelp" />
+                    <input type="email" className="form-control" id="email" name="email" value={credentials.email} required onChange={onChange} aria-describedby="emailHelp" />
                     <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div className="mb-3">
